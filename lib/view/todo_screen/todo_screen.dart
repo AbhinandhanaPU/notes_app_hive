@@ -25,6 +25,12 @@ class _TodoScreenState extends State<TodoScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ColorConstant.mainWhite,
+        foregroundColor: ColorConstant.colorTheme,
+        title: Text(
+          "To - do",
+          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+        ),
+        centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),

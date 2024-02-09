@@ -30,14 +30,14 @@ class _HomeScreenState extends State<HomeScreen> {
   TextEditingController editDateController = TextEditingController();
   int? selectedIndex;
 
-  Future selectDate() async {
+  Future selectDate(TextEditingController controller) async {
     DateTime? picked = await showDatePicker(
         context: context,
         initialDate: DateTime.now(),
         firstDate: DateTime(2000),
         lastDate: DateTime.now().add(Duration(days: 365)));
     if (picked != null) {
-      dateController.text = DateFormat('dd-MM-yyyy').format(picked);
+      controller.text = DateFormat('dd-MM-yyyy').format(picked);
       setState(() {});
     }
   }
@@ -50,15 +50,9 @@ class _HomeScreenState extends State<HomeScreen> {
         foregroundColor: ColorConstant.colorTheme,
         title: Text(
           "My Notes",
-          style: TextStyle(fontSize: 25),
+          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
-        actions: [
-          Icon(Icons.more_vert),
-          SizedBox(
-            width: 15,
-          )
-        ],
       ),
       body: Padding(
         padding: EdgeInsets.all(15),
@@ -111,41 +105,32 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     SizedBox(height: 10),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Icon(
-                          Icons.share,
+                        InkWell(
+                          onTap: () {
+                            editTitleController.text =
+                                box.get(keylist[index])!.title;
+                            editDescController.text =
+                                box.get(keylist[index])!.des;
+                            editDateController.text =
+                                box.get(keylist[index])!.date;
+                            EditBottomSheetRefactor(context, index);
+                          },
+                          child: Icon(
+                            Icons.edit,
+                          ),
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                titleController.text =
-                                    box.get(keylist[index])!.title;
-                                descController.text =
-                                    box.get(keylist[index])!.des;
-                                dateController.text =
-                                    box.get(keylist[index])!.date;
-                                EditBottomSheetRefactor(context, index);
-                              },
-                              child: Icon(
-                                Icons.edit,
-                              ),
-                            ),
-                            SizedBox(width: 25),
-                            InkWell(
-                              onTap: () {
-                                NoteScreenController()
-                                    .deleteItem(keylist[index]);
-                                keylist = box.keys.toList();
-                                setState(() {});
-                              },
-                              child: Icon(
-                                Icons.delete,
-                              ),
-                            )
-                          ],
+                        SizedBox(width: 25),
+                        InkWell(
+                          onTap: () {
+                            NoteScreenController().deleteItem(keylist[index]);
+                            keylist = box.keys.toList();
+                            setState(() {});
+                          },
+                          child: Icon(
+                            Icons.delete,
+                          ),
                         )
                       ],
                     )
@@ -184,7 +169,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             children: [
               TextFormField(
-                controller: titleController,
+                controller: editTitleController,
                 decoration: InputDecoration(
                   labelText: "Title",
                   enabledBorder: OutlineInputBorder(
@@ -205,7 +190,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               SizedBox(height: 15),
               TextFormField(
-                controller: descController,
+                controller: editDescController,
                 maxLines: 3,
                 decoration: InputDecoration(
                   labelText: "Description",
@@ -227,10 +212,10 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               SizedBox(height: 15),
               TextFormField(
-                controller: dateController,
+                controller: editDateController,
                 onTap: () => {
                   FocusScope.of(context).requestFocus(new FocusNode()),
-                  selectDate(),
+                  selectDate(editDateController),
                 },
                 decoration: InputDecoration(
                   labelText: "Date",
@@ -250,7 +235,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 15),
+              SizedBox(height: 10),
               Container(
                 height: 65,
                 child: ListView.separated(
@@ -285,22 +270,22 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                     itemCount: ColorConstant.mycolorListDart.length),
               ),
-              SizedBox(height: 15),
+              SizedBox(height: 10),
               ElevatedButton(
                 onPressed: () {
                   NoteScreenController().editText(
                       keylist[indexnum],
                       NoteModel(
-                          title: titleController.text,
-                          des: descController.text,
-                          date: dateController.text,
+                          title: editTitleController.text,
+                          des: editDescController.text,
+                          date: editDateController.text,
                           color: selectedIndex ?? 0));
                   keylist = box.keys.toList();
                   setState(() {});
                   Navigator.pop(context);
-                  titleController.clear();
-                  descController.clear();
-                  dateController.clear();
+                  editTitleController.clear();
+                  editDescController.clear();
+                  editDateController.clear();
                 },
                 child: Text("Update"),
                 style: ButtonStyle(
@@ -309,9 +294,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     backgroundColor:
                         MaterialStatePropertyAll(ColorConstant.mainWhite)),
               ),
-              SizedBox(
-                height: 10,
-              )
             ],
           ),
         );
@@ -383,7 +365,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 controller: dateController,
                 onTap: () => {
                   FocusScope.of(context).requestFocus(new FocusNode()),
-                  selectDate(),
+                  selectDate(dateController),
                 },
                 decoration: InputDecoration(
                   labelText: "Date",
@@ -403,7 +385,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 15),
+              SizedBox(height: 10),
               Container(
                 height: 65,
                 child: ListView.separated(
@@ -438,20 +420,22 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                     itemCount: ColorConstant.mycolorListDart.length),
               ),
-              SizedBox(height: 15),
+              SizedBox(height: 10),
               ElevatedButton(
                 onPressed: () {
-                  box.add(NoteModel(
-                      title: titleController.text,
-                      des: descController.text,
-                      date: dateController.text,
-                      color: selectedIndex ?? 0));
-                  keylist = box.keys.toList();
-                  setState(() {});
-                  Navigator.pop(context);
-                  titleController.clear();
-                  descController.clear();
-                  dateController.clear();
+                  if (titleController.text.isNotEmpty) {
+                    box.add(NoteModel(
+                        title: titleController.text,
+                        des: descController.text,
+                        date: dateController.text,
+                        color: selectedIndex ?? 0));
+                    keylist = box.keys.toList();
+                    setState(() {});
+                    Navigator.pop(context);
+                    titleController.clear();
+                    descController.clear();
+                    dateController.clear();
+                  }
                 },
                 child: Text("Done"),
                 style: ButtonStyle(
@@ -460,9 +444,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     backgroundColor:
                         MaterialStatePropertyAll(ColorConstant.mainWhite)),
               ),
-              SizedBox(
-                height: 10,
-              )
             ],
           ),
         );
