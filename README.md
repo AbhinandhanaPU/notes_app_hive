@@ -1,6 +1,6 @@
 # Notes App
 
-![Notes App Logo](screenshots/logo.png)
+![Notes App Logo]<img src="screenshots/logo.png" width="10%">
 
 Notes App is a simple mobile application designed to help users take notes and manage their to-do lists conveniently.
 
