@@ -21,9 +21,15 @@ Notes App is a simple mobile application designed to help users take notes and m
 9. Mark tasks as complete by tapping on the checkbox.
 10. Edit or delete notes/tasks as needed.
 
-## Technologies Used
+    
+## Tech Stack
 
-- **Flutter:** Front-end framework for building cross-platform applications.
+- 💻 Flutter: a powerful and flexible framework for building beautiful and performant user interfaces across multiple platforms.
+- 🎯 Dart: the programming language used in combination with Flutter to create the logic and functionality of the Notes App.
+- 🗃️ Hive: a lightweight and fast NoSQL database that is easy to use and integrates well with Flutter.
+- 🗂️ Git: version control system for tracking changes and collaborating with others.
+- 🌐 GitHub: hosting platform for managing and sharing the repository.
+
 
 ---
 
