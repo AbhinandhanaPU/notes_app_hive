@@ -61,6 +61,7 @@ class _TodoScreenState extends State<TodoScreen> {
                     ),
                     Checkbox(
                       value: box1.get(todolist[index])!.value,
+                      activeColor: ColorConstant.colorTheme,
                       onChanged: (checkboxValue) {
                         box1.put(
                             todolist[index],
