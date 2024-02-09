@@ -23,6 +23,7 @@ class _TodoScreenState extends State<TodoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorConstant.mainWhite,
       appBar: AppBar(
         backgroundColor: ColorConstant.mainWhite,
         foregroundColor: ColorConstant.colorTheme,
