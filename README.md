@@ -21,9 +21,18 @@ Notes App is a simple mobile application designed to help users take notes and m
 9. Mark tasks as complete by tapping on the checkbox.
 10. Edit or delete notes/tasks as needed.
 
-## Technologies Used
+## App Preview
 
-- **Flutter:** Front-end framework for building cross-platform applications.
+<img src="https://github.com/AbhinandhanaPU/notes_app_hive/blob/master/screenshots/1.png" width="32%">  <img src="https://github.com/AbhinandhanaPU/notes_app_hive/blob/master/screenshots/2.png" width="32%">  <img src="https://github.com/AbhinandhanaPU/notes_app_hive/blob/master/screenshots/4.png" width="32%"> <img src="https://github.com/AbhinandhanaPU/notes_app_hive/blob/master/screenshots/5.png" width="32%">  <img src="https://github.com/AbhinandhanaPU/notes_app_hive/blob/master/screenshots/6.png" width="32%"> <img src="https://github.com/AbhinandhanaPU/notes_app_hive/blob/master/screenshots/7.png" width="32%">  <img src="https://github.com/AbhinandhanaPU/notes_app_hive/blob/master/screenshots/8.png" width="32%"> <img src="https://github.com/AbhinandhanaPU/notes_app_hive/blob/master/screenshots/9.png" width="32%">
+
+## Tech Stack
+
+- 💻 Flutter: a powerful and flexible framework for building beautiful and performant user interfaces across multiple platforms.
+- 🎯 Dart: the programming language used in combination with Flutter to create the logic and functionality of the Notes App.
+- 🗃️ Hive: a lightweight and fast NoSQL database that is easy to use and integrates well with Flutter.
+- 🗂️ Git: version control system for tracking changes and collaborating with others.
+- 🌐 GitHub: hosting platform for managing and sharing the repository.
+
 
 ---
 
