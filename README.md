@@ -21,7 +21,10 @@ Notes App is a simple mobile application designed to help users take notes and m
 9. Mark tasks as complete by tapping on the checkbox.
 10. Edit or delete notes/tasks as needed.
 
-    
+## App Preview
+
+<img src="https://github.com/AbhinandhanaPU/notes_app_hive/blob/master/screenshots/1.png" width="32%">  <img src="https://github.com/AbhinandhanaPU/notes_app_hive/blob/master/screenshots/2.png" width="32%"> <img src="https://github.com/AbhinandhanaPU/notes_app_hive/blob/master/screenshots/3.png" width="32%">  <img src="https://github.com/AbhinandhanaPU/notes_app_hive/blob/master/screenshots/4.png" width="32%"> <img src="https://github.com/AbhinandhanaPU/notes_app_hive/blob/master/screenshots/5.png" width="32%">  <img src="https://github.com/AbhinandhanaPU/notes_app_hive/blob/master/screenshots/6.png" width="32%"> <img src="https://github.com/AbhinandhanaPU/notes_app_hive/blob/master/screenshots/7.png" width="32%">  <img src="https://github.com/AbhinandhanaPU/notes_app_hive/blob/master/screenshots/8.png" width="32%"> <img src="https://github.com/AbhinandhanaPU/notes_app_hive/blob/master/screenshots/9.png" width="32%">
+
 ## Tech Stack
 
 - 💻 Flutter: a powerful and flexible framework for building beautiful and performant user interfaces across multiple platforms.
