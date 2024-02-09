@@ -35,47 +35,57 @@ class _TodoScreenState extends State<TodoScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
-        child: ListView.separated(
-          separatorBuilder: (context, index) => SizedBox(height: 20),
-          itemCount: todolist.length,
-          itemBuilder: (context, index) => InkWell(
-            onDoubleTap: () {
-              box1.delete(todolist[index]);
-              todolist = box1.keys.toList();
-              setState(() {});
-            },
-            child: Container(
-              padding: EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: ColorConstant.todoGrey),
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      box1.get(todolist[index])!.todotitle,
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Checkbox(
-                      value: box1.get(todolist[index])!.value,
-                      activeColor: ColorConstant.colorTheme,
-                      onChanged: (checkboxValue) {
-                        box1.put(
-                            todolist[index],
-                            TodoModel(
-                                todotitle: box1.get(todolist[index])!.todotitle,
-                                value: checkboxValue));
-                        todolist = box1.keys.toList();
-                        setState(() {});
-                      },
-                    )
-                  ]),
-            ),
-          ),
-        ),
+        child: todolist.length == 0
+            ? Center(
+                child: Text(
+                """Create a new task by tapping on the "+" button""",
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: ColorConstant.colorTheme),
+              ))
+            : ListView.separated(
+                separatorBuilder: (context, index) => SizedBox(height: 20),
+                itemCount: todolist.length,
+                itemBuilder: (context, index) => InkWell(
+                  onDoubleTap: () {
+                    box1.delete(todolist[index]);
+                    todolist = box1.keys.toList();
+                    setState(() {});
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: ColorConstant.todoGrey),
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            box1.get(todolist[index])!.todotitle,
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Checkbox(
+                            value: box1.get(todolist[index])!.value,
+                            activeColor: ColorConstant.colorTheme,
+                            onChanged: (checkboxValue) {
+                              box1.put(
+                                  todolist[index],
+                                  TodoModel(
+                                      todotitle:
+                                          box1.get(todolist[index])!.todotitle,
+                                      value: checkboxValue));
+                              todolist = box1.keys.toList();
+                              setState(() {});
+                            },
+                          )
+                        ]),
+                  ),
+                ),
+              ),
       ),
       floatingActionButton: FloatingActionButton(
           backgroundColor: ColorConstant.colorTheme,

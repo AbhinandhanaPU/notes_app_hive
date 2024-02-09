@@ -57,90 +57,100 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: Padding(
         padding: EdgeInsets.all(15),
-        child: ListView.separated(
-          itemCount: keylist.length,
-          separatorBuilder: (context, index) => SizedBox(
-            height: 15,
-          ),
-          itemBuilder: (context, index) {
-            return InkWell(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => DetailsScreen(
-                        box: box, keylist: keylist, indexNum: index),
-                  ),
-                );
-              },
-              child: Container(
-                padding: EdgeInsets.all(15),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: ColorConstant
-                        .mycolorListDart[box.get(keylist[index])!.color]),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      box.get(keylist[index])!.title,
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(height: 10),
-                    Text(
-                      box.get(keylist[index])!.des,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      textAlign: TextAlign.justify,
-                      style: TextStyle(
-                        fontSize: 20,
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    Text(
-                      box.get(keylist[index])!.date.toString(),
-                      style: TextStyle(
-                        fontSize: 20,
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            editTitleController.text =
-                                box.get(keylist[index])!.title;
-                            editDescController.text =
-                                box.get(keylist[index])!.des;
-                            editDateController.text =
-                                box.get(keylist[index])!.date;
-                            EditBottomSheetRefactor(context, index);
-                          },
-                          child: Icon(
-                            Icons.edit,
-                          ),
-                        ),
-                        SizedBox(width: 25),
-                        InkWell(
-                          onTap: () {
-                            NoteScreenController().deleteItem(keylist[index]);
-                            keylist = box.keys.toList();
-                            setState(() {});
-                          },
-                          child: Icon(
-                            Icons.delete,
-                          ),
-                        )
-                      ],
-                    )
-                  ],
+        child: keylist.length == 0
+            ? Center(
+                child: Text(
+                """Create a new note by tapping on the "+" button""",
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: ColorConstant.colorTheme),
+              ))
+            : ListView.separated(
+                itemCount: keylist.length,
+                separatorBuilder: (context, index) => SizedBox(
+                  height: 15,
                 ),
+                itemBuilder: (context, index) {
+                  return InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => DetailsScreen(
+                              box: box, keylist: keylist, indexNum: index),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(15),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: ColorConstant
+                              .mycolorListDart[box.get(keylist[index])!.color]),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            box.get(keylist[index])!.title,
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(height: 10),
+                          Text(
+                            box.get(keylist[index])!.des,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.justify,
+                            style: TextStyle(
+                              fontSize: 20,
+                            ),
+                          ),
+                          SizedBox(height: 10),
+                          Text(
+                            box.get(keylist[index])!.date.toString(),
+                            style: TextStyle(
+                              fontSize: 20,
+                            ),
+                          ),
+                          SizedBox(height: 10),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  editTitleController.text =
+                                      box.get(keylist[index])!.title;
+                                  editDescController.text =
+                                      box.get(keylist[index])!.des;
+                                  editDateController.text =
+                                      box.get(keylist[index])!.date;
+                                  EditBottomSheetRefactor(context, index);
+                                },
+                                child: Icon(
+                                  Icons.edit,
+                                ),
+                              ),
+                              SizedBox(width: 25),
+                              InkWell(
+                                onTap: () {
+                                  NoteScreenController()
+                                      .deleteItem(keylist[index]);
+                                  keylist = box.keys.toList();
+                                  setState(() {});
+                                },
+                                child: Icon(
+                                  Icons.delete,
+                                ),
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                  );
+                },
               ),
-            );
-          },
-        ),
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: ColorConstant.colorTheme,
