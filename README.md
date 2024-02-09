@@ -22,4 +22,4 @@ Notebook App is a mobile application developed using the Flutter framework. It p
 
 ---
 
-**Disclaimer:** This application is for educational purposes and does not intend to infringe on any copyrights. All book information is sourced from the Google Books API.
+**Disclaimer:** This application is for educational purposes and does not intend to infringe on any copyrights.
